@@ -25,6 +25,7 @@ type Question = {
   answers: [Answer, Answer, Answer, Answer, Answer];
   correctAnswer: 0 | 1 | 2 | 3 | 4;
   currentAnswer: 0 | 1 | 2 | 3 | 4 | null;
+  useAltLetters?: boolean;
 };
 
 const indexToLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"];
@@ -93,6 +94,7 @@ const initialQuestions: Question[] = [
     },
     correctAnswer: 0,
     currentAnswer: null,
+    useAltLetters: true,
   },
   // https://utfs.io/f/ahGurVmlPhdvB3QO0RXULP1e8Ay7NsmkMuzVHriEDRpwhXKC
   {
@@ -111,6 +113,7 @@ const initialQuestions: Question[] = [
     },
     correctAnswer: 0,
     currentAnswer: null,
+    useAltLetters: true,
   },
   {
     answers: [
@@ -197,6 +200,7 @@ const initialQuestions: Question[] = [
     },
     correctAnswer: 0,
     currentAnswer: null,
+    useAltLetters: true,
   },
   {
     answers: [
@@ -214,6 +218,7 @@ const initialQuestions: Question[] = [
     },
     correctAnswer: 0,
     currentAnswer: null,
+    useAltLetters: true,
   },
 ];
 
@@ -240,10 +245,10 @@ export function Question({
           : prevQuestion,
       ),
     );
-  });
+  }, [currentAnswer, questionIndex, setQuestions]);
 
   return (
-    <div className="flex flex-col gap-3 py-3">
+    <div className="flex h-full flex-col gap-3 py-3">
       {question.content.type === "image" ? (
         <img
           src={question.content.content}
@@ -269,9 +274,9 @@ export function Question({
             <p
               className={`flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-full border-2 text-sm font-medium ${currentAnswer === index ? "border-blue-600 bg-blue-600 text-white" : "text-black"}`}
             >
-              {questionIndex % 2 == 0
-                ? indexToLetter[index]
-                : indexToLetter[index + 5]}
+              {question.useAltLetters
+                ? indexToLetter[index + 5]
+                : indexToLetter[index]}
             </p>
             {/* <p className="font-serif font-bold">{answer.content}</p> */}
           </button>
@@ -289,14 +294,14 @@ export function Test({ user }: { user: Session }) {
 
   useEffect(() => {
     if (complete) setScoreReport(generateScoreReport(questions));
-  }, [complete, questions, setScoreReport]);
+  }, [complete, questions]);
 
   const questionsAnswered = questions.filter(
     (question) => question.currentAnswer != null,
   ).length;
 
   return (
-    <div className="flex h-screen w-full max-w-sm flex-col p-2 md:h-auto">
+    <div className="flex h-screen w-full max-w-sm flex-col p-2">
       <nav className="flex flex-col gap-2 border-b pb-3">
         <div className="flex flex-row rounded-md bg-blue-800 p-3 text-xs font-medium text-white">
           <p>
@@ -336,7 +341,7 @@ export function Test({ user }: { user: Session }) {
           {questions.map((question, questionIndex) => (
             <div
               key={questionIndex}
-              className={`w-full flex-col ${questionIndex === currentQuestion ? "flex" : "hidden"}`}
+              className={`h-full w-full flex-col ${questionIndex === currentQuestion ? "flex" : "hidden"}`}
             >
               <Question
                 questions={questions}
@@ -375,12 +380,14 @@ export function Test({ user }: { user: Session }) {
       ) : (
         <>
           {scoreReport && (
-            <div>
+            <div className="py-3">
               <p>
                 Overall Score:{" "}
+                <span className="font-bold">
                 {(scoreReport?.totalCorrect / scoreReport?.totalQuestions) *
                   100}
                 % ({scoreReport.totalCorrect}/{scoreReport.totalQuestions})
+                </span>
               </p>
               <p>Section Breakdown</p>
               <div className="flex flex-col">
