@@ -249,17 +249,19 @@ export function Question({
 
   return (
     <div className="flex h-full flex-col gap-3 py-3">
-      {question.content.type === "image" ? (
-        <img
-          src={question.content.content}
-          className="h-auto w-full"
-          alt="Question Content"
-        />
-      ) : (
-        <div className="w-full px-4 pt-2 font-serif font-bold sm:px-2">
-          {question.content.content}
-        </div>
-      )}
+      <div className="max-h-[30rem] overflow-y-auto">
+        {question.content.type === "image" ? (
+          <img
+            src={question.content.content}
+            className="h-auto w-full"
+            alt="Question Content"
+          />
+        ) : (
+          <div className="w-full px-4 pt-2 font-serif font-bold sm:px-2">
+            {question.content.content}
+          </div>
+        )}
+      </div>
       <div className="mt-auto flex flex-row items-center justify-between border-t bg-white">
         {question.answers.map((answer, index) => (
           <button
@@ -352,7 +354,7 @@ export function Test({ user }: { user: Session }) {
             </div>
           ))}
 
-          <footer className="mt-auto grid w-full grid-cols-2 gap-2">
+          <footer className="mb-2 mt-auto grid w-full grid-cols-2 gap-2">
             <button
               className={
                 "rounded-md bg-blue-600 px-6 py-6 text-lg font-semibold text-white hover:bg-blue-700 disabled:cursor-default disabled:bg-gray-300 disabled:hover:bg-gray-300 sm:py-3"

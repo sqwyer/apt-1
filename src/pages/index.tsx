@@ -41,9 +41,14 @@ export default function Home() {
         />
         <link rel="icon" href="/shield.png" type="image/png" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="flex min-h-screen flex-col items-center justify-center p-2">
         {userStatus != "authenticated" ? (
-          <SignInButton status={userStatus} />
+          <>
+            <SignInButton status={userStatus} />
+            <p className="mt-2 text-xs text-gray-600">
+              You must sign in to access the practice test.
+            </p>
+          </>
         ) : (
           <Test user={user} />
         )}
