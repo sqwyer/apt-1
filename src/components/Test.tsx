@@ -58,7 +58,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdvTGb2JztXOMw32lvrPbGDgUjfk58cdiJxs9WN",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 1,
     currentAnswer: null,
   },
   {
@@ -75,7 +75,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdv6D78OGxUxifvWNd8PpHXTVDCwnUr3suRJtzQ",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 3,
     currentAnswer: null,
   },
   {
@@ -111,7 +111,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdvB3QO0RXULP1e8Ay7NsmkMuzVHriEDRpwhXKC",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 2,
     currentAnswer: null,
     useAltLetters: true,
   },
@@ -143,10 +143,10 @@ const initialQuestions: Question[] = [
     category: ["Statistics_and_Probability"],
     content: {
       content:
-        "https://utfs.io/f/ahGurVmlPhdvTGb2JztXOMw32lvrPbGDgUjfk58cdiJxs9WN",
+        "https://utfs.io/f/ahGurVmlPhdvfuAWL54Iz9jLZp5cwoRNaAVYb3nEQ0W8OKMU",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 4,
     currentAnswer: null,
   },
   {
@@ -180,7 +180,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdvHW8edz2P4LERm12ibC5dxo6IF03G7yNAr9ac",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 3,
     currentAnswer: null,
   },
   // https://utfs.io/f/ahGurVmlPhdvB3QO0RXULP1e8Ay7NsmkMuzVHriEDRpwhXKC
@@ -198,7 +198,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdvkn9Tl1bratnBjNSgA7W0CQXO4sT3mbq5IJfv",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 4,
     currentAnswer: null,
     useAltLetters: true,
   },
@@ -216,7 +216,7 @@ const initialQuestions: Question[] = [
         "https://utfs.io/f/ahGurVmlPhdvkRffeabratnBjNSgA7W0CQXO4sT3mbq5IJfv",
       type: "image",
     },
-    correctAnswer: 0,
+    correctAnswer: 2,
     currentAnswer: null,
     useAltLetters: true,
   },
@@ -384,9 +384,9 @@ export function Test({ user }: { user: Session }) {
               <p>
                 Overall Score:{" "}
                 <span className="font-bold">
-                {(scoreReport?.totalCorrect / scoreReport?.totalQuestions) *
-                  100}
-                % ({scoreReport.totalCorrect}/{scoreReport.totalQuestions})
+                  {(scoreReport?.totalCorrect / scoreReport?.totalQuestions) *
+                    100}
+                  % ({scoreReport.totalCorrect}/{scoreReport.totalQuestions})
                 </span>
               </p>
               <p>Section Breakdown</p>
