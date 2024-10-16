@@ -438,6 +438,13 @@ export function Test({ user }: { user: Session }) {
                 className={`flex aspect-square items-center justify-center rounded-sm font-semibold text-white ${question.correctAnswer === question.currentAnswer ? "bg-green-600" : "bg-red-600"}`}
               >
                 {index + 1}
+                {question.currentAnswer != null
+                  ? `(${
+                      question.useAltLetters
+                        ? indexToLetter[question.currentAnswer + 5]
+                        : indexToLetter[question.currentAnswer]
+                    })`
+                  : "()"}
               </div>
             ))}
           </div>
